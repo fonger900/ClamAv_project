@@ -1,0 +1,1 @@
+This is website that scan single file for virus.
