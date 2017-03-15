@@ -11,6 +11,10 @@ Software:
 
 *Test
 - Open browser, type http://localhost/up_form.html
+<<<<<<< HEAD
 
 
  
+=======
+ 
+>>>>>>> c02ad4db3c12ef4ec85eccff390771d5a22bcfb9
