@@ -1,5 +1,5 @@
 <?php
-$target_dir = "/home/ngo/store_file/";
+$target_dir = "/home/ubuntu/store_file/";
 $target_file = $target_dir.basename($_FILES["fileToUpload"]["name"]);
 $uploadOk = 1;
 $out = "";
@@ -12,7 +12,7 @@ $command = "clamdscan ".$target_file;
 	$uploadOk = 0;
 }*/
 //check file size
-if($_FILES["fileToUpload"]["size"]>1024*1024){
+if($_FILES["fileToUpload"]["size"]>1048576){
 	echo "Sorry, your file is too large"."<br>";
 	$uploadOk = 0;
 }
