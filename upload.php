@@ -1,15 +1,15 @@
 <?php
-$target_dir = "/home/ngo/store_file/";
+$target_dir = "/home/ubuntu/store_file/";
 $target_file = $target_dir.basename($_FILES["fileToUpload"]["name"]);
 $file = basename($target_file);
 $uploadOk = 1;
 $out = "";
 $command = "clamdscan ".$target_file;
-$imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
+//$imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
 //check if file already exists
 /*if(file_exists($target_file))
 {
-	echo "Sorry, file already exists";
+	echo "Sorry, file already exists"."<br>";
 	$uploadOk = 0;
 }*/
 //echo "File size: ".filesize($target_dir.$file)."<br>";
@@ -17,8 +17,10 @@ $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
 //check file size
 if(isset($_FILES['fileToUpload']))
 {
-if($_FILES['fileToUpload']['size']>1048576){
-	echo "Sorry, your file is too large";
+
+//check file size
+if($_FILES["fileToUpload"]["size"]>1048576){
+	echo "Sorry, your file is too large"."<br>";
 	$uploadOk = 0;
 }
 //check if $uploadOk is set to 0 by an error
@@ -29,7 +31,7 @@ if($uploadOk == 0){
 	if(move_uploaded_file($_FILES["fileToUpload"]["tmp_name"],$target_file)){
 		echo "The file ".basename($target_file)." has been uploaded";
 		//check for virus
-		
+
 		echo "<br>"."Scan result: ";
 		exec($command,$out);
 		//print_r($out);

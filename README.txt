@@ -1,10 +1,10 @@
-Project's title: Using ClamAV to scan virus online
+Project's title: Using ClamAV to scan virus online - Yeu Thay Hai Anh <3
 
 *Requirements:
 OS: Ubuntu
-Software: 
+Software:
 - Apache2: sudo apt-get install apache2
-- PHP: sudo apt-get install php libapache2-mod-php php-mcrypt php-mysql 
+- PHP: sudo apt-get install php libapache2-mod-php php-mcrypt php-mysql
 
 *Usage:
 - Place two file: up_form.html and upload.php into /var/www/html
