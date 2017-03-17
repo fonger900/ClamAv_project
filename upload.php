@@ -1,5 +1,5 @@
 <?php
-$target_dir = "/home/ubuntu/store_file/";
+$target_dir = "/home/ngo/store_file/";
 $target_file = $target_dir.basename($_FILES["fileToUpload"]["name"]);
 $file = basename($target_file);
 $uploadOk = 1;
@@ -39,12 +39,11 @@ if($uploadOk == 0){
 		//echo "Virus: ".$FOUNDpos;
 		if( $FOUNDpos !=FALSE){
 			echo "Virus FOUND"."<br>";
-			
 			$flength = strlen($file);
-			$name_pos = strripos($out[0],$file);//find lasr occurrent of $file
+			$name_pos = strpos($out[0],$file);//
 			echo "====================================="."<br>";
 			echo "File name: ".$file." || ";
-			//$num = $namepos+$flength;
+			//get virus name
 			$virus = substr($out[0],$name_pos+$flength,$FOUNDpos);
 			$virus = substr($virus,1,strlen($virus)-6);
 			echo "Virus: ".$virus;
