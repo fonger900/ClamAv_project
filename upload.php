@@ -53,5 +53,5 @@ if($uploadOk == 0){
 	
 	}
 }
-}else echo "No file choosed or your file is too large";
+}else echo "No file choosed or your file is too large!";
 ?>
