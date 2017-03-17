@@ -42,10 +42,11 @@ if($uploadOk == 0){
 			
 			$flength = strlen($file);
 			$name_pos = strripos($out[0],$file);//find lasr occurrent of $file
-			echo "File name: ".$file."<br>";
+			echo "====================================="."<br>";
+			echo "File name: ".$file." || ";
 			//$num = $namepos+$flength;
 			$virus = substr($out[0],$name_pos+$flength,$FOUNDpos);
-			$virus = substr($virus,1,strlen($virus)-5);
+			$virus = substr($virus,1,strlen($virus)-6);
 			echo "Virus: ".$virus;
 		}
 		else echo "No virus detected";
