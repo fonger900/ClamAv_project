@@ -3,9 +3,21 @@
 <body>
 <form action="upload.php" method="post" enctype="multipart/form-data">
 Select file to upload 
-<input type="file" name="fileToUpload" id="fileToUpload"><br><br>
-<input type="submit" value="Upload File" name="submit">
+<input type="file" name="fileToUpload" id="fileToUpload"/><br><br>
+<input type="submit" value="Upload File" name="submit" onClick="return validate()" />
+
 </form>
+<script type="text/javascript">
+        function validate(){
+	var size = 1048576;
+	var file_size = document.getElementById('fileToUpload').files[0].size;
+	if(file_size >= size){
+		alert('file too large');
+		return false;
+	}
+	}
+    </script>
+
 </body>
 </html>
 
