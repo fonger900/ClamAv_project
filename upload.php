@@ -58,16 +58,6 @@ if(!$fileTmpLoc){
 		 <?php }else{ ?>
 		 	<?php if($virus_detected==0){ ?>
 		 		<p>No virus found</p><br>
-		 		<table style="width: 100%">
-					<tr>
-						<td>
-						File: <?php echo $file; ?>
-						</td>
-						<td>
-						Virus: <?php echo $virus; ?>
-						</td>
-					</tr>
-				</table>
 		 		<?php }else{ ?>
 				<p>Virus found</p><br>
 				<table style="width: 100%">
