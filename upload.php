@@ -5,6 +5,7 @@ $file = basename($target_file);
 $uploadOk = 1;
 $out = "";
 $command = "clamdscan ".$target_file;
+$fileTmpLoc=$_FILES["fileToUpload"]["tmp_name"];
 //$imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
 //check if file already exists
 /*if(file_exists($target_file))
@@ -15,14 +16,18 @@ $command = "clamdscan ".$target_file;
 //echo "File size: ".filesize($target_dir.$file)."<br>";
 
 //check file size
-if(isset($_FILES['fileToUpload']))
-{
-
+//if(isset($_FILES['fileToUpload']))
+//{
+//check if file is selected
+if(!$fileTmpLoc){
+	 echo "Error! File is not selected or too large";
+	//$uploadOk=0;
+}else{
 //check file size
-if($_FILES["fileToUpload"]["size"]>1048576){
+/*if($_FILES["fileToUpload"]["size"]>1048576){
 	echo "Sorry, your file is too large"."<br>";
 	$uploadOk = 0;
-}
+}*/
 //check if $uploadOk is set to 0 by an error
 if($uploadOk == 0){
 	echo "Your file was not uploaded";
@@ -51,9 +56,10 @@ if($uploadOk == 0){
 		else echo "No virus detected";
 		exec("rm ".$target_file);
 
-	}else{ echo "Sorry, there was an error uploading your file";
-	
+	}else{ 
+		echo "Sorry, there was an error uploading your file";
 	}
 }
-}else echo "No file choosed or your file is too large!";
+}
+//}else echo "No file choosed or your file is too large!";
 ?>

@@ -1,12 +1,28 @@
 <!DOCTYPE html>
 <html>
+<head>
+	<script>
+		function() loaddoc()
+		{
+			var xhttp = new XMLHttpRequest();
+			xhttp.onreadystatechange = function()
+			{
+				if (this.readyState == 3) {
+					document.getElementById("demo").innerHTML = this.responseText;
+				}
+			}
+		}
+	</script>
+	<title>Scan virus online</title>
+</head>
 <body>
 <form action="upload.php" method="post" enctype="multipart/form-data">
 Select file to upload 
 <input type="file" name="fileToUpload" id="fileToUpload"/><br><br>
-<input type="submit" value="Upload File" name="submit" onClick="return validate()" />
+<input type="submit" value="Upload File" name="submit"  onclick="loaddoc()" />
 
 </form>
+<p id = "demo">aaa</p>
 <script type="text/javascript">
         function validate(){
 	var size = 1048576;
