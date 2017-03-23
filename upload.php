@@ -76,6 +76,7 @@ if(!$fileTmpLoc){
 		 			<img src="img/ticksign.png">
 		 			<a href="up_form.html"><button class="submit-button">Scan again</button></a>
 		 		</div>
+		 		<p>No virus found</p><br>
 		 		<?php }else{ ?>
 		 		<div class="box">
 		 			<h1>Virus found</h1>
