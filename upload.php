@@ -1,9 +1,9 @@
 
 <?php
 $target_dir = "/home/ngo/store_file/";
-$target_file = $target_dir.basename($_FILES["fileToUpload"]["name"]);
+$target_file = $target_dir.basename($_FILES["file-1"]["name"]);
 $command = "echo SCAN ".$target_file." | nc -U /var/run/clamav/clamd.ctl";
-$fileTmpLoc=$_FILES["fileToUpload"]["tmp_name"];
+$fileTmpLoc = $_FILES["file-1"]["name"];
 $file = basename($target_file);
 $flength = strlen($file);
 $out = "";
@@ -20,9 +20,10 @@ if(!$fileTmpLoc){
 }else{
 	$is_selected = 1;
 	//if file uploaded successfully
-	if(move_uploaded_file($_FILES["fileToUpload"]["tmp_name"],$target_file)){
+	if(move_uploaded_file($_FILES["file-1"]["tmp_name"],$target_file)){
 		$is_uploaded = 1;
 		//check for virus
+		echo exec("md5 ".$target_file);
 		exec($command,$out);
 		$FOUNDpos = strpos($out[0],"FOUND");
 		if( $FOUNDpos != FALSE){
@@ -35,13 +36,23 @@ if(!$fileTmpLoc){
 		//remmove uploaded file
 		exec("rm ".$target_file);
 	}
+
+	// log file
 }
 ?>
+
 <!DOCTYPE html>
 <head>
 	<title>
 		Result
 	</title>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Scan Virus online</title>
+	<link rel="stylesheet" type="text/css" href="css/normalize.css" />
+	<link rel="stylesheet" type="text/css" href="css/demo.css" />
+	<link rel="stylesheet" type="text/css" href="css/component.css" />
 	<style type="text/css">
 		table, th, td {
 			border:1px solid black;
@@ -50,6 +61,9 @@ if(!$fileTmpLoc){
 	</style>
 </head>
 <body>
+<div id="loader_background">
+		<div class="loader"></div>
+</div>
 <?php if($is_selected==0){ ?>
 	<span>Error! File is not selected</span>
 	<?php }else{ ?>
@@ -57,31 +71,27 @@ if(!$fileTmpLoc){
 		 <span>Error! File is not uploaded</span>
 		 <?php }else{ ?>
 		 	<?php if($virus_detected==0){ ?>
-		 		<p>No virus found</p><br>
-		 		<table style="width: 100%">
-					<tr>
-						<td>
-						File: <?php echo $file; ?>
-						</td>
-						<td>
-						Virus: <?php echo $virus; ?>
-						</td>
-					</tr>
-				</table>
+		 		<div class="box">
+		 			<h1>No virus found</h1>
+		 			<img src="img/ticksign.png">
+		 			<a href="up_form.html"><button class="submit-button">Scan again</button></a>
+		 		</div>
+		 		
+		 		
 		 		<?php }else{ ?>
-				<p>Virus found</p><br>
-				<table style="width: 100%">
-					<tr>
-						<td>
-						File: <?php echo $file; ?>
-						</td>
-						<td>
-						Virus: <?php echo $virus; ?>
-						</td>
-					</tr>
-				</table>
+		 		<div class="box">
+		 			<h1>Virus found</h1>
+		 			<p><strong>File name: </strong><?php echo $file; ?></p>
+		 			<p><strong>Virus: </strong><?php echo $virus; ?></p>
+		 			<a href="up_form.html"><button class="submit-button">Scan again</button></a>
+		 		</div>
 				<?php } ?>
 			<?php } ?>
 		<?php } ?>
 </body>
+<script type="text/javascript">
+	setTimeout(function(){
+    	document.getElementById("loader_background").style.display = "none";
+	}, 2000);
+</script>
 </html>
